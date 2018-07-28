@@ -3,6 +3,5 @@
 // to the console
 let profile = require('./profile.js');
 
-profile.get('iqbalutomo');
-profile.get('random');
-profile.get('randomsecond');
+let profiles = process.argv.slice(2);
+profiles.map(profile.get)  
