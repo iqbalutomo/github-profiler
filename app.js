@@ -27,11 +27,11 @@ let request = https.request(options, (res) => {
 		body = body + data;
 	});
 	res.on('end', () => {
-		console.log(body);
-		console.log(typeof body);
-	});
 	// TODO: Parse the data
-	// convert string to JSON
+	// convert string to JSON (JavaScript Object)
+	let profile = JSON.parse(body);
+	console.log(profile.avatar_url);
+	});
 	// TODO: Print the data out
 });
 
