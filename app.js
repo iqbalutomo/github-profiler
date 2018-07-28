@@ -9,7 +9,6 @@
 // TODO: Connect to GitHub API | use HTTP Docs NodeJS for taken data in internet
 const  https = require('https');
 
-// karena github mewajibkan untuk login maka kita buat object baru untuk dimasukkan keparameter
 const options = {
 	hostname: 'api.github.com',
 	port: 443,
@@ -20,8 +19,20 @@ const options = {
 	}
 }
 
+
+// TODO: Read the data
 let request = https.request(options, (res) => {
-	console.log('Got Response: ', res.statusCode);
+	let body = '';
+	res.on('data', (data) => {
+		body = body + data;
+	});
+	res.on('end', () => {
+		console.log(body);
+		console.log(typeof body);
+	});
+	// TODO: Parse the data
+	// convert string to JSON
+	// TODO: Print the data out
 });
 
 // 
@@ -30,17 +41,3 @@ request.end()
 request.on('error', (err) => {
 	console.log(err);
 })
-
-
-// TODO: Read the data
-// TODO: Parse the data
-// TODO: Print the data out
-
-
-// arrow function
-// 
-// let namaFungsi = () => {
-// 	console.log('Ini adalah fungsi tanpa nama.');
-// }
-
-// namaFungsi();
